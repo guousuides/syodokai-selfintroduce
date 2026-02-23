@@ -227,7 +227,48 @@ COORDINATES = {
     },
 
 
-    # ※ 気になる書体は SHOTAI_CHECKBOXES で別管理（下記参照）
+    # 以下気になる書体
+    '楷書': {
+        'x': 155, 'y': 358, 'font_size': 9,
+    },
+    '行書': {
+        'x': 190, 'y': 358, 'font_size': 9,
+    },
+    '草書': {
+        'x': 224, 'y': 358, 'font_size': 9,
+    },
+    '隷書': {
+        'x': 258, 'y': 358, 'font_size': 9,
+    },
+    '篆書': {
+        'x': 292, 'y': 358, 'font_size': 9,
+    },
+    'カリグラ': {
+        'x': 326, 'y': 358, 'font_size': 9,
+    },
+    '篆刻': {
+        'x': 377.5, 'y': 358, 'font_size': 9,
+    },
+    '刻字': {
+        'x': 410, 'y': 358, 'font_size': 9,
+    },
+    'ペン字': {
+        'x': 445, 'y': 358, 'font_size': 9,
+    },
+    '墨絵': {
+        'x': 155, 'y': 342.5, 'font_size': 9,
+    },
+    '写経': {
+        'x': 190, 'y': 342.5, 'font_size': 9,
+    },
+    '北魏': {
+        'x': 224, 'y': 342.5, 'font_size': 9,
+    },
+    'その他': {
+        'x': 290, 'y': 342, 'font_size': 9,
+    },
+
+    # 以上気になる書体
 
     '得意書体': {
         'x': 144, 'y': 310, 'font_size': 18,
@@ -272,30 +313,6 @@ COORDINATES = {
     # ★★★ ここに新しい要素を追加してください ★★★
     # 上の【追加例】を参考に、CSVの列名をキーにして追加します。
 }
-
-# ==========================================
-# ★★★ 気になる書体チェックボックス座標 ★★★
-# ==========================================
-# CSVの「気になる書体」列にカンマ区切りで書体名を記入してください。
-# 例: 楷書,行書,草書
-# 該当する書体の位置に✓が描画されます。
-#
-SHOTAI_CHECKBOXES = {
-    '楷書':     {'x': 155,   'y': 358},
-    '行書':     {'x': 190,   'y': 358},
-    '草書':     {'x': 224,   'y': 358},
-    '隷書':     {'x': 258,   'y': 358},
-    '篆書':     {'x': 292,   'y': 358},
-    'カリグラ':  {'x': 326,   'y': 358},
-    '篆刻':     {'x': 377.5, 'y': 358},
-    '刻字':     {'x': 410,   'y': 358},
-    'ペン字':   {'x': 445,   'y': 358},
-    '墨絵':     {'x': 155,   'y': 342.5},
-    '写経':     {'x': 190,   'y': 342.5},
-    '北魏':     {'x': 224,   'y': 342.5},
-    'その他':   {'x': 290,   'y': 342},
-}
-SHOTAI_FONT_SIZE = 9
 
 # ==========================================
 # ★★★ 画像の位置・サイズ設定 ★★★
@@ -462,17 +479,6 @@ def draw_content_on_overlay(overlay_canvas, data_row, csv_dir=""):
             )
         else:
             draw_horizontal_text(overlay_canvas, value, x, y, DEFAULT_FONT, font_size)
-
-    # --- 気になる書体のチェック描画 ---
-    shotai_value = data_row.get('気になる書体', '')
-    if shotai_value and str(shotai_value).strip():
-        selected = [s.strip() for s in str(shotai_value).split(',')]
-        for shotai_name, pos in SHOTAI_CHECKBOXES.items():
-            if shotai_name in selected:
-                draw_horizontal_text(
-                    overlay_canvas, '✓', pos['x'], pos['y'],
-                    DEFAULT_FONT, SHOTAI_FONT_SIZE
-                )
 
     # --- 画像の描画 ---
     for column, img_coord in IMAGE_COORDINATES.items():
