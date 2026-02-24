@@ -466,7 +466,7 @@ def draw_content_on_overlay(overlay_canvas, data_row, csv_dir=""):
     # --- 気になる書体のチェック描画 ---
     shotai_value = data_row.get('気になる書体', '')
     if shotai_value and str(shotai_value).strip():
-        selected = [s.strip() for s in str(shotai_value).split(',')]
+        selected = [s.strip() for s in str(shotai_value).split(';')]
         for shotai_name, pos in SHOTAI_CHECKBOXES.items():
             if shotai_name in selected:
                 draw_horizontal_text(
